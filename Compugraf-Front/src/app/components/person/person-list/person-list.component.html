@@ -1,0 +1,34 @@
+<div class="text-end my-3">
+    <button class="btn btn-primary" [routerLink]="['/person']">Novo cadastro</button>
+</div>
+<table class="table table-hover mt-5">
+    <thead class="thead-light">
+        <tr>
+            <th class="col">Nome</th>
+            <th class="col">E-mail</th>
+            <th class="col">CPF</th>
+            <th class="col">Telefone</th>
+            <th class="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of personList">
+            <td>{{ person.name}} {{ person.lastName}}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.cpf }}</td>
+            <td>{{ person.phoneNumber }}</td>
+            <td class="text-end">
+                <button class="btn btn-link py-0" (click)="handleEditPerson(person.id)">
+                    <i class="pi pi-user-edit"></i>
+                </button>
+                <button class="btn btn-link py-0" (click)="handleRemovePerson(person.id)">
+                    <i class="pi pi-times"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!personList.length" class="m-4">Nenhuma pessoa cadastrada</div>
+
+<p-confirmDialog header="Confirmação" acceptLabel="Sim" rejectLabel="Não" icon="pi pi-exclamation-triangle">
+</p-confirmDialog>
